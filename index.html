@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>start.ng · Good vibes. Good games.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-motion="normal">
+
+  <!-- ==========================================
+       GLOBAL INTERACTIVE KINETIC SVG OVERLAY
+       Contains:
+       1. Diagonal Pluckable Zipline Cable & Trolley
+       2. Suspended Dual Ropes for "Play now"
+       ========================================== -->
+  <svg id="kinetic-stage-svg" class="kinetic-stage-svg" aria-hidden="true">
+    <!-- Pluckable Zipline Cable -->
+    <path id="zipline-cable" class="zipline-cable" d="M 0 0 Q 0 0 0 0" />
+    
+    <!-- Zipline Pulley Trolley & Traveler Character -->
+    <g id="zipline-trolley" class="zipline-trolley" transform="translate(0, 0)">
+      <!-- Pulley Wheel on Cable -->
+      <circle cx="0" cy="-14" r="5" fill="#1C1C1E" stroke="#B8F135" stroke-width="2" />
+      <circle cx="0" cy="-14" r="1.5" fill="#FFFFFF" />
+      <!-- Hanger Bracket -->
+      <path d="M 0 -9 L 0 0 L -6 6 L 6 6 Z" fill="#1C1C1E" />
+      
+      <!-- Mini Traveler Holding Trophy -->
+      <!-- Speech bubble on zipline -->
+      <foreignObject x="-75" y="-55" width="150" height="38">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="zipline-speech-bubble" id="zipline-speech">
+          Trophy incoming! 🏆
+        </div>
+      </foreignObject>
+
+      <!-- Traveler Body -->
+      <g id="zipline-char-body">
+        <!-- Body / Sweater -->
+        <rect x="-9" y="4" width="18" height="16" rx="4" fill="#E26D5C" stroke="#1C1C1E" stroke-width="1.8" />
+        <!-- Head -->
+        <circle cx="0" cy="-2" r="8" fill="#F7D1BA" stroke="#1C1C1E" stroke-width="1.8" />
+        <!-- Lime beret -->
+        <ellipse cx="0" cy="-8" rx="8" ry="3" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.5" />
+        <circle cx="0" cy="-10.5" r="1.2" fill="#1C1C1E" />
+        <!-- Eyes & Smile -->
+        <circle cx="-2.5" cy="-2.5" r="1" fill="#1C1C1E" />
+        <circle cx="2.5" cy="-2.5" r="1" fill="#1C1C1E" />
+        <path d="M -2 1 Q 0 3 2 1" stroke="#1C1C1E" stroke-width="1.2" fill="none" stroke-linecap="round" />
+        <!-- Wind-blown Scarf fluttering backward -->
+        <path class="wind-scarf" d="M 7 5 Q 16 2 24 6 Q 18 10 8 8" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.2" />
+        <!-- Swinging Legs -->
+        <path d="M -4 20 L -6 28 L -10 29" fill="none" stroke="#1C1C1E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M 4 20 L 7 27 L 11 27" fill="none" stroke="#1C1C1E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        <!-- Golden Tournament Trophy in hand -->
+        <g transform="translate(-16, -2) scale(0.9)">
+          <path d="M 4 4 L 14 4 L 12 12 Q 9 16 9 18 L 13 22 L 5 22 L 9 18 Q 9 16 6 12 Z" fill="#FFA726" stroke="#1C1C1E" stroke-width="1.5" />
+          <path d="M 4 6 Q -1 8 4 11" fill="none" stroke="#FFA726" stroke-width="1.5" />
+          <path d="M 14 6 Q 19 8 14 11" fill="none" stroke="#FFA726" stroke-width="1.5" />
+          <polygon points="9,7 10,9 12,9 10.5,10.5 11,13 9,11.5 7,13 7.5,10.5 6,9 8,9" fill="#FFFFFF" />
+        </g>
+      </g>
+    </g>
+  </svg>
+
+  <!-- ==========================================
+       AUTHENTIC START.NG TOP NAVIGATION BAR
+       ========================================== -->
+  <header class="start-navbar" id="start-nav">
+    <div class="nav-container">
+      
+      <!-- Brand Logo (Zipline Cable Anchor Point #1) -->
+      <a href="#hero" class="brand-link" id="zipline-anchor-top" aria-label="start.ng home">
+        <span class="brand-badge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M 7 4.5 C 7 3.6 8 3 8.8 3.5 L 19 9.8 C 19.8 10.3 19.8 11.5 19 12 L 8.8 18.3 C 8 18.8 7 18.2 7 17.3 Z" fill="#1C1C1E"/>
+          </svg>
+        </span>
+        <span class="brand-text">start.ng</span>
+      </a>
+
+      <!-- Center Nav Links -->
+      <nav class="nav-center-menu" id="nav-center-menu" aria-label="Primary Navigation">
+        <a href="#games-catalog" class="nav-item active">Games</a>
+        <a href="#tournament-banner" class="nav-item">Tournament</a>
+        <a href="#creators" class="nav-item">Creators</a>
+        <a href="#docs" class="nav-item">Docs</a>
+      </nav>
+
+      <!-- Right Nav Controls -->
+      <div class="nav-right-cluster">
+        <!-- Sound effects toggle -->
+        <button type="button" class="icon-circle-btn" id="btn-sound-toggle" title="Toggle cozy audio effects" aria-label="Toggle sound">
+          <span id="sound-icon">🔈</span>
+        </button>
+
+        <!-- Theme moon toggle -->
+        <button type="button" class="icon-circle-btn" id="btn-theme-toggle" title="Toggle night mode" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Community Coin counter pill -->
+        <div class="coin-counter-pill" title="Community Coins">
+          <span class="coin-icon">🪙</span>
+          <span class="coin-val" id="coin-amount">0</span>
+        </div>
+
+        <!-- Creator Profile Avatar -->
+        <div class="user-avatar-circle" title="Your start.ng profile">
+          <svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true">
+            <circle cx="18" cy="18" r="17" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.5" />
+            <ellipse cx="18" cy="20" rx="9" ry="10" fill="#E4AA7D" />
+            <rect x="11" y="17" width="5.5" height="4.5" rx="1.5" fill="none" stroke="#1C1C1E" stroke-width="1.5" />
+            <rect x="19.5" y="17" width="5.5" height="4.5" rx="1.5" fill="none" stroke="#1C1C1E" stroke-width="1.5" />
+            <line x1="16.5" y1="19" x2="19.5" y2="19" stroke="#1C1C1E" stroke-width="1.5" />
+            <circle cx="13.7" cy="19.2" r="1" fill="#1C1C1E" />
+            <circle cx="22.2" cy="19.2" r="1" fill="#1C1C1E" />
+            <path d="M 15 25 Q 18 28 21 25" stroke="#1C1C1E" stroke-width="1.2" fill="none" stroke-linecap="round" />
+            <path d="M 9 17 C 9 10 27 10 27 17 C 27 14 24 12 18 12 C 12 12 9 14 9 17 Z" fill="#1C1C1E" />
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="page-body">
+
+    <!-- ==========================================
+         HERO SECTION:
+         WITH DUAL-ROPE DANGLING "PLAY NOW" BUTTON
+         AND LIVING PUNCTUATION ADJUSTER
+         ========================================== -->
+    <section class="hero-start-section" id="hero">
+      <div class="hero-content-wrap">
+        
+        <!-- Big Friendly start.ng Typography -->
+        <h1 class="hero-heading">
+          <span class="heading-line line-1">Good vibes.</span>
+          <span class="heading-line line-2">
+            <span class="highlight-wrapper">
+              <span class="highlight-backdrop" aria-hidden="true"></span>
+              <span class="highlight-text">Good games</span>
+            </span>
+            <!-- The living punctuation dot -->
+            <span class="living-punctuation-wrap" id="living-dot-anchor" role="button" tabindex="0" title="Click to gently tilt the dot!">
+              <span class="living-dot" id="hero-living-dot">.</span>
+              
+              <!-- Subtle Caretaker #1 atop the dot -->
+              <div class="caretaker-headline" id="caretaker-1" aria-label="Tiny community caretaker gently leveling the dot">
+                <div class="subtle-speech-bubble" id="caretaker-1-speech">All leveled up! ✨</div>
+                <svg class="mini-char-svg" viewBox="0 0 46 54" width="38" height="45" aria-hidden="true">
+                  <ellipse cx="23" cy="51" rx="12" ry="3" fill="rgba(34, 34, 32, 0.12)" />
+                  <path d="M 17 38 L 16 48 L 12 49" fill="none" stroke="#1C1C1E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 17 38 L 16 48 L 12 49" fill="none" stroke="#688B77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 27 38 L 29 47 L 34 48" fill="none" stroke="#1C1C1E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 27 38 L 29 47 L 34 48" fill="none" stroke="#688B77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <ellipse cx="12" cy="49" rx="3" ry="1.8" fill="#F4D35E" stroke="#1C1C1E" stroke-width="1" />
+                  <ellipse cx="34" cy="48" rx="3" ry="1.8" fill="#F4D35E" stroke="#1C1C1E" stroke-width="1" />
+                  <rect x="14" y="26" width="17" height="15" rx="4" fill="#688B77" stroke="#1C1C1E" stroke-width="1.8" />
+                  <rect x="16" y="27" width="13" height="4" rx="1" fill="#B8F135" />
+                  <circle cx="22.5" cy="18" r="7.5" fill="#F7D1BA" stroke="#1C1C1E" stroke-width="1.8" />
+                  <circle cx="20" cy="18" r="0.9" fill="#1C1C1E" />
+                  <circle cx="25" cy="18" r="0.9" fill="#1C1C1E" />
+                  <path d="M 21 21 Q 22.5 22.5 24 21" stroke="#1C1C1E" stroke-width="1.2" fill="none" stroke-linecap="round" />
+                  <ellipse cx="18" cy="19.5" rx="1.2" ry="0.8" fill="#FF8A73" opacity="0.6" />
+                  <ellipse cx="27" cy="19.5" rx="1.2" ry="0.8" fill="#FF8A73" opacity="0.6" />
+                  <path d="M 15 15 C 15 7 30 7 30 15 Z" fill="#F4D35E" stroke="#1C1C1E" stroke-width="1.8" />
+                  <circle cx="22.5" cy="7" r="2.2" fill="#F6F6F2" stroke="#1C1C1E" stroke-width="1.2" />
+                  <path d="M 14 30 L 10 24" stroke="#1C1C1E" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M 14 30 L 10 24" stroke="#F7D1BA" stroke-width="1.5" stroke-linecap="round" />
+                  <circle cx="9.5" cy="23.5" r="2" fill="#F6F6F2" stroke="#1C1C1E" stroke-width="1" />
+                </svg>
+              </div>
+            </span>
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtext">
+          Games made by builders in the community.<br>
+          Each one lives at its own address, like <span class="subdomain-highlight" id="highlight-pill-sample">star-dash.start.ng</span>.<br>
+          Pick one and play right in your browser.
+        </p>
+
+        <!-- ==========================================
+             THE DANGLING "PLAY NOW" BUTTON SYSTEM
+             PHYSICALLY SUSPENDED ON DUAL ROPES WITH PENDULUM SWAY
+             ========================================== -->
+        <div class="suspended-cradle-rig" id="suspended-cradle-rig">
+          
+          <!-- Continuous Dual Rigging Ropes SVG -->
+          <svg class="suspension-ropes-svg" viewBox="0 0 240 110" preserveAspectRatio="none">
+            <!-- Left Cable from Ceiling down to Left Carabiner -->
+            <line x1="50" y1="0" x2="50" y2="82" stroke="#1C1C1E" stroke-width="2" stroke-linecap="round" stroke-dasharray="4,2" />
+            <!-- Left Lime Carabiner / Pulley Shackle -->
+            <circle cx="50" cy="85" r="5" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.8" />
+            <circle cx="50" cy="85" r="1.5" fill="#1C1C1E" />
+            
+            <!-- Right Cable from Ceiling down to Right Carabiner -->
+            <line x1="190" y1="0" x2="190" y2="82" stroke="#1C1C1E" stroke-width="2" stroke-linecap="round" stroke-dasharray="4,2" />
+            <!-- Right Lime Carabiner / Pulley Shackle -->
+            <circle cx="190" cy="85" r="5" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.8" />
+            <circle cx="190" cy="85" r="1.5" fill="#1C1C1E" />
+          </svg>
+
+          <!-- Swinging Pendulum Assembly (Contains Perched Character + Button) -->
+          <div class="pendulum-chassis" id="pendulum-chassis">
+            
+            <!-- PERCHED CHARACTER (60px TALL, SITTING ON TOP WITH DANGLING LEGS & FLAG) -->
+            <div class="sway-perched-char" id="sway-perched-char" aria-label="Cute companion perched on the dangling button">
+              
+              <!-- Speech Bubble -->
+              <div class="companion-bubble" id="companion-speech" aria-live="polite">
+                <span id="companion-speech-text">Ready to play? 👋</span>
+              </div>
+
+              <!-- High-detail SVG Character with Eyetracking, Leg Swing & Waving Flag -->
+              <svg class="char-perched-svg" id="char-perched-svg" viewBox="0 0 74 80" width="62" height="68" aria-hidden="true">
+                <!-- Dangling shadow on button top edge -->
+                <ellipse cx="37" cy="74" rx="20" ry="3.5" fill="rgba(28, 28, 30, 0.2)" />
+
+                <!-- Dangling Legs Over Button Edge -->
+                <g class="swinging-legs" id="comp-legs">
+                  <!-- Left Leg -->
+                  <path d="M 28 50 L 26 68 L 20 70" fill="none" stroke="#1C1C1E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 28 50 L 26 68 L 20 70" fill="none" stroke="#E26D5C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                  <ellipse cx="19" cy="70" rx="3.8" ry="2.2" fill="#1C1C1E" />
+                  <!-- Right Leg -->
+                  <path d="M 46 50 L 48 67 L 55 69" fill="none" stroke="#1C1C1E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 46 50 L 48 67 L 55 69" fill="none" stroke="#E26D5C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                  <ellipse cx="55" cy="69" rx="3.8" ry="2.2" fill="#1C1C1E" />
+                </g>
+
+                <!-- Torso / Cozy Warm Knit Sweater -->
+                <rect x="23" y="32" width="28" height="23" rx="7" fill="#F4A261" stroke="#1C1C1E" stroke-width="2.2" />
+                <line x1="25" y1="42" x2="49" y2="42" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="3,3" />
+
+                <!-- Head with Dynamic Tracking Eyes -->
+                <g id="comp-head">
+                  <circle cx="37" cy="22" r="13" fill="#F7D1BA" stroke="#1C1C1E" stroke-width="2.2" />
+                  <!-- Sclera (White of Eyes) -->
+                  <ellipse cx="32" cy="21" rx="3.5" ry="4.5" fill="#FFFFFF" stroke="#1C1C1E" stroke-width="1.3" />
+                  <ellipse cx="42" cy="21" rx="3.5" ry="4.5" fill="#FFFFFF" stroke="#1C1C1E" stroke-width="1.3" />
+                  <!-- Interactive Pupils (Calculated by JS cursor tracking) -->
+                  <circle id="comp-pupil-left" cx="32" cy="21" r="1.8" fill="#1C1C1E" />
+                  <circle id="comp-pupil-right" cx="42" cy="21" r="1.8" fill="#1C1C1E" />
+                  <!-- Smile -->
+                  <path id="comp-mouth" d="M 33 28 Q 37 31 41 28" stroke="#1C1C1E" stroke-width="1.6" fill="none" stroke-linecap="round" />
+                  <!-- Rosy Cheeks -->
+                  <circle cx="28" cy="25" r="1.8" fill="#FF8A73" opacity="0.6" />
+                  <circle cx="46" cy="25" r="1.8" fill="#FF8A73" opacity="0.6" />
+                  <!-- Hair & Lime Beret -->
+                  <path d="M 25 17 C 25 8 49 8 49 17 C 45 11 29 11 25 17 Z" fill="#1C1C1E" />
+                  <ellipse cx="37" cy="10" rx="12" ry="4.5" fill="#B8F135" stroke="#1C1C1E" stroke-width="2" />
+                  <circle cx="37" cy="6.5" r="1.8" fill="#1C1C1E" />
+                </g>
+
+                <!-- Hands resting on button (Default) -->
+                <g id="comp-default-hands">
+                  <circle cx="24" cy="46" r="3.2" fill="#F7D1BA" stroke="#1C1C1E" stroke-width="1.5" />
+                  <circle cx="50" cy="46" r="3.2" fill="#F7D1BA" stroke="#1C1C1E" stroke-width="1.5" />
+                </g>
+
+                <!-- Waving Lime-Green Flag (Appears on Hover) -->
+                <g id="comp-waving-flag" class="comp-flag-group" opacity="0">
+                  <!-- Arm raised holding flagpole -->
+                  <path d="M 48 40 Q 56 34 54 22" fill="none" stroke="#1C1C1E" stroke-width="3" stroke-linecap="round" />
+                  <path d="M 48 40 Q 56 34 54 22" fill="none" stroke="#F4A261" stroke-width="2" stroke-linecap="round" />
+                  <!-- Flagpole -->
+                  <line x1="54" y1="28" x2="54" y2="2" stroke="#1C1C1E" stroke-width="2" stroke-linecap="round" />
+                  <!-- Fluttering Lime Green Flag -->
+                  <path class="flag-cloth" d="M 54 3 Q 66 1 64 12 Q 58 14 54 13 Z" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.5" />
+                  <text x="59" y="10" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" font-weight="800" fill="#1C1C1E">GO!</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- THE SUSPENDED "PLAY NOW" BUTTON -->
+            <a href="#games-catalog" class="btn-dangling-play" id="btn-play-now" aria-label="Play now in your browser">
+              <span class="btn-rope-ring ring-l" aria-hidden="true"></span>
+              <span class="btn-label-text">Play now</span>
+              <span class="btn-rope-ring ring-r" aria-hidden="true"></span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TODAY'S TOURNAMENT BANNER
+         WITH DANGLING / SWINGING 5TH TOURNAMENT ICON & MINI CRANE
+         ========================================== -->
+    <section class="tournament-section-wrap" id="tournament-banner">
+      
+      <!-- Top-Left Zipline Anchor Point on the Tournament Card -->
+      <div class="zipline-landing-zone" id="zipline-anchor-bottom" aria-hidden="true"></div>
+
+      <div class="tournament-card" id="tournament-card">
+        
+        <!-- Top-Right Crane Rigger: Hoisting the 5th icon! -->
+        <div class="crane-rigger-post" id="crane-rigger-post" title="Click to hoist or drop the 5th tournament game!">
+          <!-- Rigger speech bubble -->
+          <div class="rigger-speech-bubble" id="crane-speech">
+            Lowering game #5! 🏗️
+          </div>
+          <!-- Miniature Crane & Operator SVG -->
+          <svg viewBox="0 0 70 54" width="70" height="54">
+            <!-- Mini yellow crane jib / boom pole extending over card -->
+            <line x1="18" y1="46" x2="48" y2="8" stroke="#1C1C1E" stroke-width="3" stroke-linecap="round" />
+            <line x1="18" y1="46" x2="48" y2="8" stroke="#FFA726" stroke-width="2" stroke-linecap="round" />
+            <!-- Crane mast & brace -->
+            <line x1="18" y1="46" x2="18" y2="16" stroke="#1C1C1E" stroke-width="2.5" />
+            <line x1="18" y1="16" x2="48" y2="8" stroke="#1C1C1E" stroke-width="1.8" />
+            <!-- Pulley wheel at crane tip -->
+            <circle cx="48" cy="8" r="4.5" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.5" />
+            
+            <!-- Crane Operator Character -->
+            <!-- Body -->
+            <rect x="8" y="24" width="14" height="15" rx="3" fill="#688B77" stroke="#1C1C1E" stroke-width="1.5" />
+            <!-- Head & Hardhat -->
+            <circle cx="15" cy="18" r="6" fill="#F7D1BA" stroke="#1C1C1E" stroke-width="1.5" />
+            <path d="M 9 16 C 9 9 21 9 21 16 Z" fill="#FFA726" stroke="#1C1C1E" stroke-width="1.5" />
+            <rect x="7" y="16" width="16" height="2" fill="#1C1C1E" rx="1" />
+            <!-- Eyes & determined smile -->
+            <circle cx="13" cy="18" r="0.8" fill="#1C1C1E" />
+            <circle cx="17" cy="18" r="0.8" fill="#1C1C1E" />
+            <path d="M 13 21 Q 15 22.5 17 21" stroke="#1C1C1E" stroke-width="1" fill="none" />
+            <!-- Hands on winch crank -->
+            <circle cx="23" cy="30" r="2.5" fill="#F7D1BA" stroke="#1C1C1E" stroke-width="1" />
+            <circle cx="27" cy="30" r="3" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.2" />
+          </svg>
+        </div>
+
+        <div class="tournament-accent-tag"></div>
+
+        <!-- Left Column Info -->
+        <div class="tournament-left-col">
+          <div class="tournament-meta-tag">TODAY'S TOURNAMENT · 5H 58M LEFT</div>
+          <h2 class="tournament-title">5 games. 24 hours.<br>One winner.</h2>
+          <p class="tournament-description">
+            Share to enter, then play. <strong id="tourney-players-count">12 players</strong> have entered.
+          </p>
+          <button type="button" class="btn-subtle-pill" id="btn-enter-tournament">
+            Enter tournament
+          </button>
+        </div>
+
+        <!-- Right Side: The 4 Fixed Icons + THE DANGLING 5TH ICON! -->
+        <div class="tournament-games-strip" id="tournament-strip">
+          <div class="strip-thumb" title="Coin Dash">
+            <div class="thumb-inner th-1">🪙</div>
+            <span class="strip-name">Coin Dash</span>
+          </div>
+          <div class="strip-thumb" title="Star Dash">
+            <div class="thumb-inner th-2">⭐</div>
+            <span class="strip-name">Star Dash</span>
+          </div>
+          <div class="strip-thumb" title="Doom Circuit">
+            <div class="thumb-inner th-3">⚡</div>
+            <span class="strip-name">Doom Circuit</span>
+          </div>
+          <div class="strip-thumb" title="Ghost Shift">
+            <div class="thumb-inner th-4">👾</div>
+            <span class="strip-name">Host Shift</span>
+          </div>
+
+          <!-- ==========================================
+               THE 5TH DANGLING GAME ICON (SWINGING PENDULUM)
+               ========================================== -->
+          <div class="dangling-icon-rig" id="dangling-5th-rig" role="button" tabindex="0" title="Click to hoist or drop the 5th tournament game!">
+            <!-- Dynamic SVG Suspension Rope -->
+            <svg class="crane-cable-svg" viewBox="0 0 60 70" preserveAspectRatio="none">
+              <line id="crane-rope-line" x1="30" y1="0" x2="30" y2="52" stroke="#1C1C1E" stroke-width="2" stroke-dasharray="3,2" />
+              <!-- Shackle Ring -->
+              <circle cx="30" cy="54" r="3.5" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.5" />
+            </svg>
+            
+            <!-- The 5th Game Icon: Puff Puff Catch / Agege Rush -->
+            <div class="strip-thumb suspended-thumb" id="suspended-5th-thumb">
+              <div class="thumb-inner th-5" id="th-5-inner">
+                <span class="th-5-icon">🥟</span>
+                <span class="dangling-tag">#5</span>
+              </div>
+              <span class="strip-name">Puff Catch</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ALL GAMES FROM THE COMMUNITY
+         WITH UPGRADED 1.8X CARETAKER LEAPING ACROSS CARDS
+         ========================================== -->
+    <section class="community-games-section" id="games-catalog">
+      <div class="catalog-header-area">
+        <div class="catalog-title-row">
+          <h2 class="catalog-title">All games from the community</h2>
+          <span class="catalog-count" id="catalog-count-text">1-20 of 133</span>
+        </div>
+
+        <!-- Pill Search Bar -->
+        <div class="search-bar-container">
+          <div class="search-input-wrapper">
+            <span class="search-glass-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#7A7A75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8.5" cy="8.5" r="5.5"></circle>
+                <line x1="13" y1="13" x2="17.5" y2="17.5"></line>
+              </svg>
+            </span>
+            <input type="text" id="community-search" class="community-search-input" placeholder="Search games by name or creator" autocomplete="off">
+            <button type="button" class="clear-search-btn" id="btn-clear-search" style="display: none;" aria-label="Clear search">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS ARENA WITH THE LEAPING CARETAKER (1.8X SCALE) -->
+      <div class="cards-arena-wrapper" id="cards-arena">
+        
+        <!-- THE UPGRADED 1.8X LEAPING CARETAKER -->
+        <div class="leaping-caretaker-companion" id="leaping-caretaker" aria-label="Large friendly community builder leaping across cards">
+          <!-- Dynamic Floating Speech Bubble -->
+          <div class="leaper-speech-bubble" id="leaper-speech" aria-live="polite">
+            <span id="leaper-speech-text">The Hangout is the coziest place! 🌿</span>
+          </div>
+
+          <!-- Scaled Up High-Definition Character SVG -->
+          <svg class="leaper-svg" id="leaper-svg" viewBox="0 0 68 76" width="68" height="76">
+            <!-- Shadow -->
+            <ellipse cx="34" cy="71" rx="18" ry="4" fill="rgba(28, 28, 30, 0.2)" />
+            
+            <!-- Walking / Jumping Legs -->
+            <g class="leaper-legs" id="leaper-legs">
+              <!-- Left Leg -->
+              <path class="leg-l" d="M 26 48 L 22 65 L 15 67" fill="none" stroke="#1C1C1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+              <path class="leg-l-in" d="M 26 48 L 22 65 L 15 67" fill="none" stroke="#688B77" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+              <ellipse cx="14" cy="67" rx="4" ry="2.5" fill="#F4D35E" stroke="#1C1C1E" stroke-width="1.2" />
+              <!-- Right Leg -->
+              <path class="leg-r" d="M 42 48 L 46 64 L 54 66" fill="none" stroke="#1C1C1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+              <path class="leg-r-in" d="M 42 48 L 46 64 L 54 66" fill="none" stroke="#688B77" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+              <ellipse cx="54" cy="66" rx="4" ry="2.5" fill="#F4D35E" stroke="#1C1C1E" stroke-width="1.2" />
+            </g>
+
+            <!-- Dungarees & Body -->
+            <rect x="22" y="30" width="24" height="22" rx="6" fill="#688B77" stroke="#1C1C1E" stroke-width="2.2" />
+            <rect x="25" y="32" width="18" height="5" rx="1" fill="#B8F135" />
+            <!-- Pocket with mini pencil -->
+            <rect x="28" y="40" width="12" height="8" rx="2" fill="#587966" stroke="#1C1C1E" stroke-width="1.2" />
+            <line x1="37" y1="38" x2="37" y2="44" stroke="#FFA726" stroke-width="2" stroke-linecap="round" />
+
+            <!-- Head & Hat -->
+            <circle cx="34" cy="20" r="12" fill="#F7D1BA" stroke="#1C1C1E" stroke-width="2.2" />
+            <!-- Face -->
+            <circle cx="30" cy="19" r="1.5" fill="#1C1C1E" />
+            <circle cx="38" cy="19" r="1.5" fill="#1C1C1E" />
+            <path d="M 31 24 Q 34 27.5 37 24" stroke="#1C1C1E" stroke-width="1.8" fill="none" stroke-linecap="round" />
+            <ellipse cx="26" cy="22" rx="2" ry="1.2" fill="#FF8A73" opacity="0.6" />
+            <ellipse cx="42" cy="22" rx="2" ry="1.2" fill="#FF8A73" opacity="0.6" />
+            <!-- Beret / Cap -->
+            <path d="M 23 16 C 23 6 45 6 45 16 Z" fill="#F4D35E" stroke="#1C1C1E" stroke-width="2.2" />
+            <ellipse cx="34" cy="16" rx="14" ry="3.5" fill="#B8F135" stroke="#1C1C1E" stroke-width="1.8" />
+            <circle cx="34" cy="6" r="2.5" fill="#F6F6F2" stroke="#1C1C1E" stroke-width="1.2" />
+
+            <!-- Arms & Duster Wand -->
+            <g class="leaper-arms" id="leaper-arms">
+              <path d="M 23 35 L 14 42" stroke="#1C1C1E" stroke-width="3" stroke-linecap="round" />
+              <path d="M 45 35 L 56 26" stroke="#1C1C1E" stroke-width="3" stroke-linecap="round" />
+              <!-- Soft sparkle feather duster in right hand -->
+              <line x1="54" y1="28" x2="63" y2="18" stroke="#846C5B" stroke-width="2" stroke-linecap="round" />
+              <circle cx="64" cy="16" r="5" fill="#FFFFFF" stroke="#1C1C1E" stroke-width="1.5" />
+              <polygon points="64,9 66,13 70,13 67,16 68,20 64,18 60,20 61,16 58,13 62,13" fill="#B8F135" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- 4-COLUMN COMMUNITY GAME CARDS GRID -->
+        <div class="community-cards-grid" id="community-grid">
+          <!-- Populated by JavaScript -->
+        </div>
+
+      </div>
+
+      <!-- Empty state when search yields no result -->
+      <div class="empty-search-state" id="empty-search-box" style="display: none;">
+        <span class="empty-icon">🍃</span>
+        <p>No community games found matching your search.</p>
+        <button type="button" class="btn-subtle-pill" id="btn-reset-search">Show all games</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       AUTHENTIC FLOATING ACTION CONTROLS
+       (? Help in bottom left, ↓ Scroll in bottom right)
+       ========================================== -->
+  <a href="#help" class="floating-help-btn" id="btn-floating-help" aria-label="Need help?">
+    <span class="help-question-circle">?</span>
+    <span class="help-text">Help</span>
+  </a>
+
+  <button type="button" class="floating-scroll-btn" id="btn-scroll-bottom" aria-label="Scroll to community games" title="Scroll down">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#B8F135" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <polyline points="19 12 12 19 5 12"></polyline>
+    </svg>
+  </button>
+
+  <!-- ==========================================
+       AUTHENTIC START.NG NATIVE PLAY MODAL
+       ========================================== -->
+  <div class="start-modal-backdrop" id="game-modal" role="dialog" aria-modal="true" aria-labelledby="modal-game-heading" style="display: none;">
+    <div class="start-modal-card">
+      <div class="start-modal-header">
+        <div class="modal-info-col">
+          <h3 class="modal-title" id="modal-game-heading">The Hangout</h3>
+          <span class="modal-subdomain" id="modal-game-subdomain">start.ng/hangout</span>
+        </div>
+        <div class="modal-header-actions">
+          <button type="button" class="modal-icon-btn" id="modal-like-btn" title="Save to favorites">♡</button>
+          <button type="button" class="modal-icon-btn" id="modal-close-btn" aria-label="Close game preview">✕</button>
+        </div>
+      </div>
+
+      <div class="start-modal-stage">
+        <canvas id="play-canvas" width="680" height="380"></canvas>
+        
+        <div class="canvas-hud-overlay" id="modal-hud">
+          <span class="hud-chip">SCORE: <strong id="hud-score-val">0</strong></span>
+          <span class="hud-chip">STARS: <strong id="hud-stars-val">3/3</strong></span>
+          <span class="hud-hint">Use [A] [D] or [←] [→] to walk, [SPACE] to jump!</span>
+        </div>
+
+        <div class="canvas-start-prompt" id="canvas-start-prompt">
+          <div class="prompt-box">
+            <span class="prompt-icon">🎮</span>
+            <h4 id="prompt-game-title">Play in your browser</h4>
+            <p>A quick community experiment made with love. Walk around, gather stars, and enjoy the vibes.</p>
+            <button type="button" class="btn-dangling-play" style="display:inline-block;" id="btn-launch-canvas-game">Start Playing</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="start-modal-footer">
+        <div class="modal-author-row">
+          <span class="creator-label" id="modal-creator-tag">Created by <strong>start.ng</strong></span>
+        </div>
+        <div class="modal-actions-row">
+          <button type="button" class="btn-subtle-pill" id="btn-modal-open-new-tab">Open at start.ng/hangout ↗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-hub" id="toast-hub" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>

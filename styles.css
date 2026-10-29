@@ -1,0 +1,1382 @@
+/* ==========================================================================
+   START.NG · GOOD VIBES. GOOD GAMES.
+   Authentic start.ng Visual System & Kinetic Diorama Rigging
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   DESIGN TOKENS & EXACT START.NG PALETTE
+   -------------------------------------------------------------------------- */
+:root {
+  /* Exact Colors Specified */
+  --bg-page: #F6F6F2;              /* Exact warm start.ng off-white */
+  --bg-card: #FFFFFF;              /* Pure clean white card surface */
+  --bg-subtle: #ECECE6;            /* Secondary muted surface */
+  
+  --text-main: #1C1C1E;            /* Dark charcoal black */
+  --text-muted: #7A7A75;           /* Subdomain links and metadata */
+  --text-faint: #A6A6A0;           /* Counters, placeholders */
+  
+  --accent-lime: #B8F135;          /* Exact start.ng vibrant lime green */
+  --accent-lime-tint: #E2F99A;     /* Soft highlight tint */
+  --accent-lime-glow: rgba(184, 241, 53, 0.45);
+  --accent-coin: #FFA726;          /* Community gold coin */
+  --accent-heart: #FF5A5F;         /* Favorite heart active */
+
+  /* Minimal Clean Borders & Soft Organic Shadows */
+  --border-card: 1px solid #ECE8DF;
+  --border-light: 1px solid rgba(28, 28, 30, 0.06);
+  --radius-card: 18px;
+  --radius-thumb: 12px;
+  --radius-pill: 9999px;
+
+  /* Natural, Effortless Shadows (Zero Brutalism) */
+  --shadow-subtle: 0 2px 6px rgba(0, 0, 0, 0.025);
+  --shadow-card: 0 4px 14px rgba(28, 28, 30, 0.035);
+  --shadow-card-hover: 0 8px 24px rgba(28, 28, 30, 0.08);
+  --shadow-modal: 0 20px 48px rgba(0, 0, 0, 0.12);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Transitions */
+  --ease-gentle: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+/* Reduced Motion Mode */
+[data-motion="reduced"] *,
+[data-motion="reduced"] *::before,
+[data-motion="reduced"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* --------------------------------------------------------------------------
+   FOUNDATION & RESET
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL KINETIC SVG OVERLAY (ZIPLINE & CABLES)
+   -------------------------------------------------------------------------- */
+.kinetic-stage-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 900px;
+  pointer-events: none;
+  z-index: 150;
+  overflow: visible;
+}
+
+/* Pluckable Zipline Cable */
+.zipline-cable {
+  fill: none;
+  stroke: rgba(28, 28, 30, 0.35);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 4, 3;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: stroke 0.2s ease;
+}
+
+.zipline-cable:hover {
+  stroke: var(--accent-lime);
+  stroke-width: 2.5;
+}
+
+/* Zipline Trolley */
+.zipline-trolley {
+  pointer-events: auto;
+  cursor: grab;
+  will-change: transform;
+}
+
+.wind-scarf {
+  transform-origin: 7px 5px;
+  animation: flutter-scarf 0.4s infinite alternate ease-in-out;
+}
+
+@keyframes flutter-scarf {
+  from { transform: rotate(-6deg) scaleY(0.9); }
+  to { transform: rotate(10deg) scaleY(1.15); }
+}
+
+.zipline-speech-bubble {
+  background: #FFFFFF;
+  color: var(--text-main);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  border: 1px solid #ECE8DF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* --------------------------------------------------------------------------
+   AUTHENTIC START.NG TOP NAVIGATION BAR
+   -------------------------------------------------------------------------- */
+.start-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--bg-page);
+  border-bottom: 1px solid rgba(28, 28, 30, 0.05);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: opacity 0.15s ease;
+}
+
+.brand-link:hover {
+  opacity: 0.85;
+}
+
+.brand-badge-icon {
+  width: 26px;
+  height: 26px;
+  background-color: var(--accent-lime);
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text-main);
+}
+
+.nav-center-menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--text-main);
+}
+
+.nav-right-cluster {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.icon-circle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  transition: background-color 0.15s ease;
+}
+
+.icon-circle-btn:hover {
+  background-color: var(--bg-subtle);
+}
+
+.coin-counter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: #FFFFFF;
+  border: 1px solid #ECE8DF;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  box-shadow: var(--shadow-subtle);
+  user-select: none;
+}
+
+.user-avatar-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-gentle);
+}
+
+.user-avatar-circle:hover {
+  transform: scale(1.06);
+}
+
+/* --------------------------------------------------------------------------
+   HERO SECTION:
+   SUSPENDED DUAL-ROPE "PLAY NOW" BUTTON WITH PENDULUM SWAY
+   -------------------------------------------------------------------------- */
+.hero-start-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 50px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-content-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-heading {
+  font-size: clamp(3.2rem, 7vw, 5.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  color: var(--text-main);
+  margin-bottom: 24px;
+  user-select: none;
+}
+
+.heading-line {
+  display: block;
+}
+
+.highlight-wrapper {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.highlight-backdrop {
+  position: absolute;
+  left: -6px;
+  right: -6px;
+  bottom: 6px;
+  height: 0.42em;
+  background-color: var(--accent-lime);
+  border-radius: 6px;
+  z-index: 1;
+}
+
+.highlight-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Caretaker #1 on Living Dot */
+.living-punctuation-wrap {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 5;
+  outline: none;
+}
+
+.living-dot {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s var(--ease-spring), color 0.2s ease;
+  transform-origin: center;
+}
+
+.living-dot.tilted {
+  transform: translateY(6px) rotate(16deg) scale(1.1);
+  color: #E26D5C;
+}
+
+.caretaker-headline {
+  position: absolute;
+  top: -36px;
+  left: 2px;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.caretaker-headline:hover {
+  transform: translateY(-4px) scale(1.08);
+}
+
+.subtle-speech-bubble {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  color: var(--text-main);
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #ECE8DF;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.caretaker-headline:hover .subtle-speech-bubble,
+.subtle-speech-bubble.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.hero-subtext {
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin-bottom: 30px;
+}
+
+.subdomain-highlight {
+  background-color: var(--accent-lime-tint);
+  color: var(--text-main);
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.15s ease;
+}
+
+.subdomain-highlight:hover {
+  background-color: var(--accent-lime);
+}
+
+/* ==========================================================================
+   THE SUSPENDED DUAL-ROPE "PLAY NOW" RIG
+   Continuous Gentle Pendulum Sway & Spring Impulse Physics
+   ========================================================================== */
+.suspended-cradle-rig {
+  position: relative;
+  width: 240px;
+  height: 140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  pointer-events: auto;
+}
+
+.suspension-ropes-svg {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 240px;
+  height: 110px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Pendulum Chassis (Sways together) */
+.pendulum-chassis {
+  position: relative;
+  top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  will-change: transform;
+  /* Continuous gentle pendulum sway */
+  animation: pendulum-drift 4.2s infinite ease-in-out;
+}
+
+@keyframes pendulum-drift {
+  0% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+  100% { transform: rotate(-2.5deg); }
+}
+
+/* Perched Character on Button Top Edge */
+.sway-perched-char {
+  position: relative;
+  top: 14px; /* Sits right on the top border of the button */
+  z-index: 20;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-spring);
+}
+
+.char-perched-svg {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.08));
+}
+
+/* Companion Speech Bubble */
+.companion-bubble {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  color: var(--text-main);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  border: 1px solid #ECE8DF;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sway-perched-char:hover .companion-bubble,
+.companion-bubble.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-3px);
+}
+
+/* Hovering the button makes character stand up & wave lime flag! */
+.suspended-cradle-rig:hover .sway-perched-char {
+  transform: translateY(-8px) scale(1.08);
+}
+
+.suspended-cradle-rig:hover .comp-flag-group {
+  opacity: 1 !important;
+}
+
+.suspended-cradle-rig:hover #comp-default-hands {
+  opacity: 0;
+}
+
+.suspended-cradle-rig:hover .companion-bubble {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.flag-cloth {
+  transform-origin: 54px 3px;
+  animation: flutter-flag 0.3s infinite alternate ease-in-out;
+}
+
+@keyframes flutter-flag {
+  0% { transform: skewY(-4deg) scaleX(0.95); }
+  100% { transform: skewY(6deg) scaleX(1.05); }
+}
+
+/* The Dangling Pill Button */
+.btn-dangling-play {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 36px;
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #1C1C1E;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 18px rgba(28, 28, 30, 0.2);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  user-select: none;
+}
+
+.btn-dangling-play:hover {
+  background-color: #000000;
+  box-shadow: 0 8px 24px rgba(28, 28, 30, 0.3), 0 0 0 3px var(--accent-lime);
+}
+
+/* Metal rigging eyelets on button left and right */
+.btn-rope-ring {
+  position: absolute;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  background: #FFFFFF;
+  border: 2px solid var(--accent-lime);
+  border-radius: 50%;
+}
+.btn-rope-ring.ring-l { left: 16px; }
+.btn-rope-ring.ring-r { right: 16px; }
+
+/* --------------------------------------------------------------------------
+   TODAY'S TOURNAMENT BANNER
+   WITH DANGLING 5TH GAME ICON & MINI CRANE RIGGER
+   -------------------------------------------------------------------------- */
+.tournament-section-wrap {
+  max-width: 1100px;
+  margin: 40px auto 70px;
+  padding: 0 24px;
+  position: relative;
+}
+
+.zipline-landing-zone {
+  position: absolute;
+  top: 0;
+  left: 48px;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.tournament-card {
+  position: relative;
+  background-color: #FFFFFF;
+  border: var(--border-card);
+  border-radius: 20px;
+  padding: 32px 36px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  overflow: visible; /* Allows crane and dangling icon to extend gracefully */
+}
+
+/* Accent flap on the right border */
+.tournament-accent-tag {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 6px;
+  background-color: var(--accent-lime);
+  border-radius: 0 20px 20px 0;
+}
+
+/* Crane Rigger on Top-Right Border */
+.crane-rigger-post {
+  position: absolute;
+  top: -42px;
+  right: 28px;
+  z-index: 40;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-spring);
+}
+
+.crane-rigger-post:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.rigger-speech-bubble {
+  position: absolute;
+  top: -24px;
+  right: 0;
+  background: #FFFFFF;
+  color: var(--text-main);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid #ECE8DF;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.crane-rigger-post:hover .rigger-speech-bubble,
+.rigger-speech-bubble.active {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.tournament-meta-tag {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.tournament-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.tournament-description {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.tournament-description strong {
+  color: var(--text-main);
+}
+
+.btn-subtle-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  background-color: var(--bg-page);
+  border: 1px solid #ECE8DF;
+  border-radius: var(--radius-pill);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-subtle-pill:hover {
+  background-color: #FFFFFF;
+  border-color: #D8D4CA;
+}
+
+/* Tournament Strip: 4 Static Icons + The Dangling 5th Icon */
+.tournament-games-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.strip-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.strip-thumb:hover {
+  transform: translateY(-3px);
+}
+
+.thumb-inner {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid #ECE8DF;
+}
+
+.th-1 { background-color: #E8F475; }
+.th-2 { background-color: #1C1C1E; color: #FFF; }
+.th-3 { background-color: #1C3F39; color: #FFF; }
+.th-4 { background-color: #4A3E72; color: #FFF; }
+
+.strip-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   THE 5TH DANGLING GAME ICON WITH PENDULUM SWING
+   ========================================================================== */
+.dangling-icon-rig {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  margin-top: -22px; /* Hangs down from the crane above */
+}
+
+.crane-cable-svg {
+  width: 60px;
+  height: 56px;
+  overflow: visible;
+  transition: height 0.4s var(--ease-spring);
+}
+
+.suspended-thumb {
+  transform-origin: top center;
+  /* Pendulum swing for the 5th icon */
+  animation: dangling-icon-swing 3.2s infinite ease-in-out;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+@keyframes dangling-icon-swing {
+  0% { transform: rotate(-7deg); }
+  50% { transform: rotate(7deg); }
+  100% { transform: rotate(-7deg); }
+}
+
+.th-5 {
+  position: relative;
+  background-color: #FFA726;
+  border: 2px solid var(--accent-lime);
+  box-shadow: 0 4px 12px rgba(255, 167, 38, 0.35);
+}
+
+.dangling-tag {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--accent-lime);
+  color: var(--text-main);
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--text-main);
+}
+
+/* HOISTED STATE: 5th Icon pulled up flush in line! */
+.dangling-icon-rig.hoisted .crane-cable-svg {
+  height: 18px;
+}
+
+.dangling-icon-rig.hoisted .suspended-thumb {
+  animation: none;
+  transform: rotate(0deg) translateY(-8px);
+}
+
+.dangling-icon-rig.hoisted .th-5 {
+  box-shadow: 0 0 0 2px var(--accent-lime);
+}
+
+/* --------------------------------------------------------------------------
+   ALL GAMES FROM THE COMMUNITY
+   WITH UPGRADED 1.8X CARETAKER LEAPING ACROSS CARDS
+   -------------------------------------------------------------------------- */
+.community-games-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+}
+
+.catalog-header-area {
+  margin-bottom: 32px;
+}
+
+.catalog-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.catalog-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--text-main);
+}
+
+.catalog-count {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.search-bar-container {
+  display: flex;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+}
+
+.search-glass-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.community-search-input {
+  width: 100%;
+  padding: 12px 38px 12px 42px;
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  color: var(--text-main);
+  background-color: #FFFFFF;
+  border: 1px solid #ECE8DF;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-subtle);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.community-search-input:focus {
+  border-color: #D8D4CA;
+  box-shadow: 0 0 0 3px rgba(184, 241, 53, 0.4);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* CARDS ARENA WITH THE LEAPING CARETAKER */
+.cards-arena-wrapper {
+  position: relative;
+  margin-top: 30px;
+}
+
+/* THE 1.8X SCALED LEAPING CARETAKER */
+.leaping-caretaker-companion {
+  position: absolute;
+  top: -50px;
+  left: 20px;
+  z-index: 80;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.25, 1.4, 0.5, 1);
+  will-change: transform;
+}
+
+.leaper-speech-bubble {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  color: var(--text-main);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(28, 28, 30, 0.1);
+  border: 1.5px solid var(--accent-lime);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.leaper-svg {
+  filter: drop-shadow(0 6px 10px rgba(28, 28, 30, 0.12));
+}
+
+/* 4-COLUMN CARDS GRID */
+.community-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.community-card {
+  position: relative;
+  background-color: var(--bg-card);
+  border: var(--border-card);
+  border-radius: var(--radius-card);
+  padding: 12px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s var(--ease-gentle), box-shadow 0.2s var(--ease-gentle), border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.community-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: #DDD8CD;
+}
+
+.community-card.has-lime-glow {
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 2px var(--accent-lime), 0 8px 24px rgba(184, 241, 53, 0.35);
+}
+
+.card-thumb-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-thumb);
+  overflow: hidden;
+  margin-bottom: 12px;
+  background-color: #F0ECE4;
+}
+
+.card-thumb-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.community-card:hover .card-thumb-image {
+  transform: scale(1.03);
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  padding: 0 4px 4px;
+}
+
+.card-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.2px;
+  margin-bottom: 2px;
+}
+
+.card-subdomain {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 2px;
+}
+
+.card-creator {
+  font-size: 0.82rem;
+  color: #8C8C86;
+  margin-bottom: 12px;
+}
+
+.card-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.card-like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transition: color 0.15s ease, transform 0.15s var(--ease-spring);
+}
+
+.card-like-btn:hover {
+  color: var(--accent-heart);
+  transform: scale(1.15);
+}
+
+.card-like-btn.liked {
+  color: var(--accent-heart);
+}
+
+.card-links-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-lb-link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.card-lb-link:hover {
+  text-decoration: underline;
+}
+
+.card-play-pill {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: transform 0.15s ease;
+}
+
+.community-card:hover .card-play-pill {
+  transform: translateX(2px);
+}
+
+.empty-search-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.empty-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   FLOATING ACTION CONTROLS
+   -------------------------------------------------------------------------- */
+.floating-help-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #1C1C1E;
+  color: #FFFFFF;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s var(--ease-gentle);
+}
+
+.floating-help-btn:hover {
+  transform: translateY(-2px);
+}
+
+.help-question-circle {
+  width: 20px;
+  height: 20px;
+  background-color: var(--accent-lime);
+  color: #1C1C1E;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.floating-scroll-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  background-color: #1C1C1E;
+  border: none;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s var(--ease-spring);
+}
+
+.floating-scroll-btn:hover {
+  transform: translateY(2px) scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   START.NG IN-PLACE PLAY MODAL
+   -------------------------------------------------------------------------- */
+.start-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 30, 0.45);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: modal-fade 0.2s ease-out;
+}
+
+@keyframes modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.start-modal-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  border: var(--border-card);
+  box-shadow: var(--shadow-modal);
+  width: 100%;
+  max-width: 740px;
+  overflow: hidden;
+  animation: modal-slide 0.25s var(--ease-spring);
+}
+
+@keyframes modal-slide {
+  from { transform: scale(0.96) translateY(10px); }
+  to { transform: scale(1) translateY(0); }
+}
+
+.start-modal-header {
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #F0ECE4;
+}
+
+.modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: var(--text-main);
+}
+
+.modal-subdomain {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.modal-icon-btn:hover {
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+}
+
+.start-modal-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #F8F6F0;
+  overflow: hidden;
+}
+
+#play-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.canvas-hud-overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.hud-chip {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.hud-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.canvas-start-prompt {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(246, 246, 242, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.prompt-box {
+  max-width: 380px;
+}
+
+.prompt-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.prompt-box h4 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.prompt-box p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.start-modal-footer {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  border-top: 1px solid #F0ECE4;
+}
+
+.creator-label {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.creator-label strong {
+  color: var(--text-main);
+}
+
+/* Toast Hub */
+.toast-hub {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.start-toast {
+  background-color: #1C1C1E;
+  color: #FFFFFF;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.84rem;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  animation: toast-in 0.2s var(--ease-spring);
+}
+
+@keyframes toast-in {
+  from { transform: translateY(12px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .community-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-center-menu {
+    display: none;
+  }
+  .tournament-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .community-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .kinetic-stage-svg {
+    display: none; /* Hide diagonal zipline on narrow screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .community-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-heading {
+    font-size: 2.8rem;
+  }
+  .tournament-games-strip {
+    flex-wrap: wrap;
+  }
+}
